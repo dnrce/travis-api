@@ -15,6 +15,14 @@ class Travis::Api::App
       register ::Skylight::Sinatra
     end
 
+    configure :production do
+      if File.exists?('config/newrelic.yml')
+        require 'newrelic_rpm' 
+        ::NewRelic::Agent.manual_start()
+        ::NewRelic::Agent.after_fork(:force_reconnect => true)
+      end
+    end
+
     error NotImplementedError do
       content_type :txt
       status 501

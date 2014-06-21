@@ -23,8 +23,12 @@ gem 'dalli'
 gem 'pry'
 gem 'metriks',         '0.9.9.6'
 gem 'metriks-librato_metrics', github: 'eric/metriks-librato_metrics'
+gem 'micro_migrations'
 
 gem 'skylight', github: 'henrikhodne/skylight-ruby', branch: 'master-sinatra'
+
+# otherwise runs into broken dependencies, 2014-06-19
+gem 'redis-namespace', '~> 1.4.0'
 
 group :test do
   gem 'rspec',         '~> 2.13'
@@ -41,5 +45,4 @@ end
 
 group :development, :test do
   gem 'rake', '~> 0.9.2'
-  gem 'micro_migrations', git: 'https://gist.github.com/4269321.git'
 end
